@@ -1,0 +1,97 @@
+:host {
+  display: block;
+}
+
+.track {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 12px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+}
+
+.track__header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.track__name {
+  font-weight: 600;
+  color: #e6edf3;
+  font-size: 14px;
+}
+
+.track__lane {
+  position: relative;
+  overflow: hidden;
+}
+
+.track__road {
+  position: relative;
+  height: 48px;
+  background: repeating-linear-gradient(
+    to right,
+    transparent 0,
+    transparent 20px,
+    #30363d 20px,
+    #30363d 30px
+  );
+  background-position: 0 50%;
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-color: #0d1117;
+  border-radius: 4px;
+}
+
+.track__car {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+
+}
+
+.track__car--driving {
+  animation-name: drive;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+  animation-iteration-count: 1;
+}
+
+.track__car--broken {
+
+  animation-play-state: paused;
+}
+
+.track__finish {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 24px;
+  pointer-events: none;
+}
+
+@keyframes drive {
+  from {
+    left: 0;
+  }
+  to {
+
+    left: calc(100% - 80px);
+  }
+}
+
+@media (max-width: 600px) {
+  .track__road {
+    height: 40px;
+  }
+
+  .track__finish {
+    font-size: 20px;
+    right: 4px;
+  }
+}
