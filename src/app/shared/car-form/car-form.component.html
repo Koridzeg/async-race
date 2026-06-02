@@ -1,1 +1,39 @@
-<p>car-form works!</p>
+<form class="form" (ngSubmit)="onSubmit()">
+  <input
+    type="text"
+    class="form__input"
+    name="carName"
+    placeholder="Car name"
+    [maxlength]="maxLength"
+    [disabled]="disabled"
+    [(ngModel)]="name"
+  />
+
+  <input
+    type="color"
+    class="form__color"
+    name="carColor"
+    aria-label="Car color"
+    [disabled]="disabled"
+    [(ngModel)]="color"
+  />
+
+  <button
+    type="submit"
+    class="form__btn form__btn--primary"
+    [disabled]="disabled || !name.trim()"
+  >
+    {{ mode === 'create' ? 'Create' : 'Save' }}
+  </button>
+
+  @if (mode === 'edit') {
+    <button
+      type="button"
+      class="form__btn form__btn--ghost"
+      [disabled]="disabled"
+      (click)="onCancel()"
+    >
+      Cancel
+    </button>
+  }
+</form>
