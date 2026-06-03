@@ -1,0 +1,54 @@
+:host {
+  display: block;
+}
+
+.controls {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.controls__btn {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: 14px;
+  border: 1px solid transparent;
+  transition: all 120ms ease-out;
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.controls__btn--start {
+  background: #3fb950;
+  color: #0d1117;
+
+  &:hover:not(:disabled) {
+    background: #4ac460;
+  }
+}
+
+.controls__btn--reset {
+  background: transparent;
+  color: #e6edf3;
+  border-color: #30363d;
+
+  &:hover:not(:disabled) {
+    border-color: #484f58;
+    background: #21262d;
+  }
+}
+
+.controls__btn--ghost {
+  background: transparent;
+  color: #8b949e;
+  border-color: #30363d;
+
+  &:hover:not(:disabled) {
+    color: #e6edf3;
+    border-color: #484f58;
+  }
+}

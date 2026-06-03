@@ -1,5 +1,51 @@
 <div class="track">
   <div class="track__header">
+    <div class="track__actions">
+      <button
+        type="button"
+        class="track__btn track__btn--icon"
+        [disabled]="actionsDisabled"
+        (click)="select.emit(id)"
+        aria-label="Select car"
+        title="Select"
+      >
+        ✎
+      </button>
+      <button
+        type="button"
+        class="track__btn track__btn--icon track__btn--danger"
+        [disabled]="actionsDisabled"
+        (click)="remove.emit(id)"
+        aria-label="Remove car"
+        title="Remove"
+      >
+        ✕
+      </button>
+    </div>
+
+    <div class="track__engine">
+      <button
+        type="button"
+        class="track__btn track__btn--engine"
+        [disabled]="!canStart"
+        (click)="startEngine.emit(id)"
+        aria-label="Start engine"
+        title="Start engine"
+      >
+        ▶
+      </button>
+      <button
+        type="button"
+        class="track__btn track__btn--engine"
+        [disabled]="!canStop"
+        (click)="stopEngine.emit(id)"
+        aria-label="Stop engine"
+        title="Stop engine"
+      >
+        ■
+      </button>
+    </div>
+
     <span class="track__name">{{ name }}</span>
   </div>
 

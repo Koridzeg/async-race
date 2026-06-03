@@ -1,0 +1,64 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: #0d1117;
+  color: #e6edf3;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.app__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #30363d;
+}
+
+.app__brand {
+  font-size: 28px;
+  margin: 0;
+}
+
+.app__nav {
+  display: flex;
+  gap: 8px;
+}
+
+.app__nav-link {
+  padding: 8px 16px;
+  border-radius: 6px;
+  color: #8b949e;
+  font-weight: 600;
+  font-size: 14px;
+  transition: all 120ms ease-out;
+
+  &:hover {
+    color: #e6edf3;
+    background: #21262d;
+  }
+
+  &--active {
+    color: #e6edf3;
+    background: #21262d;
+  }
+}
+
+@media (max-width: 600px) {
+  .app {
+    padding: 16px 12px;
+  }
+
+  .app__brand {
+    font-size: 22px;
+  }
+}

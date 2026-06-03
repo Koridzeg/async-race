@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.pagination {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+
+.pagination__btn {
+  padding: 6px 14px;
+  background: #21262d;
+  color: #e6edf3;
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  font-size: 14px;
+  transition: background 120ms ease-out;
+
+  &:hover:not(:disabled) {
+    background: #30363d;
+  }
+}
+
+.pagination__indicator {
+  color: #8b949e;
+  font-size: 14px;
+
+  strong {
+    color: #e6edf3;
+  }
+}

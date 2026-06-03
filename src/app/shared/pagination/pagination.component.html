@@ -1,1 +1,25 @@
-<p>pagination works!</p>
+<div class="pagination">
+  <button
+    type="button"
+    class="pagination__btn"
+    [disabled]="disabled || isFirstPage"
+    (click)="prev()"
+    aria-label="Previous page"
+  >
+    ‹ Prev
+  </button>
+
+  <span class="pagination__indicator">
+    Page <strong>{{ page }}</strong> of <strong>{{ totalPages }}</strong>
+  </span>
+
+  <button
+    type="button"
+    class="pagination__btn"
+    [disabled]="disabled || isLastPage"
+    (click)="next()"
+    aria-label="Next page"
+  >
+    Next ›
+  </button>
+</div>

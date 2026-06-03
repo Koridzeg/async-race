@@ -1,0 +1,26 @@
+<div class="app">
+  <header class="app__header">
+    <h1 class="app__brand">🏁 Async Race</h1>
+    <nav class="app__nav">
+      <a
+        class="app__nav-link"
+        routerLink="/garage"
+        routerLinkActive="app__nav-link--active"
+      >
+        Garage
+      </a>
+
+      <a
+        class="app__nav-link"
+        routerLink="/winners"
+        routerLinkActive="app__nav-link--active"
+      >
+        Winners
+      </a>
+    </nav>
+  </header>
+
+  <main class="app__main">
+    <router-outlet />
+  </main>
+</div>

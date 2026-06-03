@@ -1,0 +1,61 @@
+:host {
+  display: block;
+}
+
+.garage {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.garage__header {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+}
+
+.garage__title {
+  color: #e6edf3;
+  font-size: 24px;
+}
+
+.garage__count {
+  color: #8b949e;
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.garage__panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  background: #161b22;
+  border: 1px solid #30363d;
+  border-radius: 8px;
+}
+
+.garage__banner {
+  padding: 16px;
+  background: linear-gradient(90deg, rgba(63, 185, 80, 0.2), transparent);
+  border: 1px solid #3fb950;
+  border-radius: 8px;
+  color: #e6edf3;
+  font-size: 18px;
+  text-align: center;
+}
+
+.garage__empty {
+  padding: 32px;
+  background: #161b22;
+  border: 1px dashed #30363d;
+  border-radius: 8px;
+  color: #8b949e;
+  text-align: center;
+}
+
+.garage__tracks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}

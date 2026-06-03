@@ -1,1 +1,28 @@
-<p>race-controls works!</p>
+<div class="controls">
+  <button
+    type="button"
+    class="controls__btn controls__btn--start"
+    [disabled]="isRacing"
+    (click)="startRace.emit()"
+  >
+    ▶ Start race
+  </button>
+
+  <button
+    type="button"
+    class="controls__btn controls__btn--reset"
+    [disabled]="!canReset"
+    (click)="resetRace.emit()"
+  >
+    ↺ Reset
+  </button>
+
+  <button
+    type="button"
+    class="controls__btn controls__btn--ghost"
+    [disabled]="isRacing"
+    (click)="generateRandom.emit()"
+  >
+    + Generate 100 cars
+  </button>
+</div>
