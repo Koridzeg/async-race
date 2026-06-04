@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 
 import { Car } from '../core/models/car.model';
 import { EngineApiService } from '../core/services/engine-api.service';
+import { WinnersStore } from './winners-store.service';
 
 const MS_PER_SECOND = 1000;
 const TIME_DECIMALS = 2;
@@ -23,6 +24,7 @@ export interface RaceWinner {
 @Injectable({ providedIn: 'root' })
 export class RaceStore {
   private readonly engineApi = inject(EngineApiService);
+  private readonly winnersStore = inject(WinnersStore);
 
   private readonly _carStates = signal<Map<number, CarRaceState>>(new Map());
   public readonly carStates = this._carStates.asReadonly();
@@ -86,9 +88,12 @@ public async startRace(cars: readonly Car[]): Promise<void> {
       if (result && !firstFinisher) {
         firstFinisher = result;
         this._winner.set(result);
+        this.winnersStore.recordWin(result.id, result.time);
       }
     }),
   );
+
+  this._isRacing.set(false);
 }
 
   public resetRace(carIds: readonly number[]): void {

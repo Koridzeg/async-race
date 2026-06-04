@@ -1,1 +1,47 @@
-<p>winners works!</p>
+<section class="winners">
+  <header class="winners__header">
+    <h2 class="winners__title">
+      Winners <span class="winners__count">({{ store.total() }})</span>
+    </h2>
+  </header>
+
+  @if (store.total() === 0 && !store.loading()) {
+    <p class="winners__empty">No winners yet. Run a race in the garage to crown one.</p>
+  } @else {
+    <div class="winners__table-wrap">
+      <table class="winners__table">
+        <thead>
+          <tr>
+            <th>№</th>
+            <th>Car</th>
+            <th>Name</th>
+            <th class="winners__sortable" (click)="toggleSort('wins')">
+              Wins <span class="winners__sort-icon">{{ sortIcon('wins') }}</span>
+            </th>
+            <th class="winners__sortable" (click)="toggleSort('time')">
+              Best time (s) <span class="winners__sort-icon">{{ sortIcon('time') }}</span>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (winner of store.winners(); track winner.id; let i = $index) {
+            <tr>
+              <td>{{ rowNumber(i) }}</td>
+              <td><ar-car [color]="winner.color" /></td>
+              <td>{{ winner.name }}</td>
+              <td>{{ winner.wins }}</td>
+              <td>{{ winner.time }}</td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+
+    <ar-pagination
+      [page]="store.page()"
+      [totalPages]="store.totalPages()"
+      [disabled]="store.loading()"
+      (pageChange)="store.goToPage($event)"
+    />
+  }
+</section>

@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
   selector: 'ar-car',
+  standalone: true,
   imports: [],
   templateUrl: './car.component.html',
   styleUrl: './car.component.scss',

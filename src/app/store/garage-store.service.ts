@@ -3,6 +3,7 @@ import { Injectable, computed, inject, signal } from '@angular/core';
 import { Car, CreateCarPayload, UpdateCarPayload } from '../core/models/car.model';
 import { GarageApiService } from '../core/services/garage-api.service';
 import { RaceStore } from './race-store.service';
+import { WinnersApiService } from '../core/services/winners-api.service';
 
 const PAGE_SIZE = 7;
 const FIRST_PAGE = 1;
@@ -16,6 +17,7 @@ private readonly raceStore = inject(RaceStore);
   private readonly _total = signal(0);
   private readonly _page = signal(FIRST_PAGE);
   private readonly _loading = signal(false);
+  private readonly winnersApi = inject(WinnersApiService);
 
 
   public readonly cars = this._cars.asReadonly();
@@ -62,6 +64,8 @@ private readonly raceStore = inject(RaceStore);
 public deleteCar(id: number): void {
   this.raceStore.forgetCar(id);
   this.api.deleteCar(id).subscribe(() => {
+    this.winnersApi.deleteWinner(id).subscribe({ error: () => undefined });
+
     const remainingOnPage = this._cars().length - 1;
     if (remainingOnPage === 0 && this._page() > FIRST_PAGE) {
       this._page.update((p) => p - 1);
