@@ -1,21 +1,20 @@
 <section class="garage">
   <header class="garage__header">
-    <h2 class="garage__title">Garage <span class="garage__count">({{ garage.total() }})</span></h2>
+    <h2 class="garage__title">
+      Garage
+      <span class="garage__count">({{ garage.total() }})</span>
+    </h2>
   </header>
 
   <div class="garage__panel">
-    <ar-car-form
-      mode="create"
-      [disabled]="race.isRacing()"
-      (submitForm)="onCreate($event)"
-    />
+    <ar-car-form mode="create" [disabled]="race.isRacing()" (submitForm)="onCreate($event)" />
 
     <ar-car-form
       mode="edit"
       [initialValue]="editingInitialValue()"
       [disabled]="race.isRacing() || !editingCar()"
       (submitForm)="onUpdate($event)"
-      (cancel)="onCancelEdit()"
+      (cancelEdit)="onCancelEdit()"
     />
 
     <ar-race-controls
@@ -29,12 +28,16 @@
 
   @if (race.winner(); as winner) {
     <div class="garage__banner" role="status">
-      🏆 <strong>{{ winner.name }}</strong> won in {{ winner.time }}s!
+      🏆
+      <strong>{{ winner.name }}</strong>
+      won in {{ winner.time }}s!
     </div>
   }
 
   @if (garage.cars().length === 0 && !garage.loading()) {
-    <p class="garage__empty">No cars in the garage. Create one above or click "Generate 100 cars".</p>
+    <p class="garage__empty">
+      No cars in the garage. Create one above or click "Generate 100 cars".
+    </p>
   } @else {
     <div class="garage__tracks">
       @for (car of garage.cars(); track car.id) {
@@ -51,7 +54,7 @@
           [actionsDisabled]="race.isRacing()"
           (startEngine)="onStartEngine($event)"
           (stopEngine)="onStopEngine($event)"
-          (select)="onSelect($event)"
+          (selectCar)="onSelect($event)"
           (remove)="onRemove($event)"
         />
       }

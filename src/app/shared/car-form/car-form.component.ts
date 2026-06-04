@@ -31,7 +31,7 @@ export class CarFormComponent implements OnChanges {
   @Input() public disabled = false;
 
   @Output() public readonly submitForm = new EventEmitter<CarFormValue>();
-  @Output() public readonly cancel = new EventEmitter<void>();
+  @Output() public readonly cancelEdit = new EventEmitter<void>();
 
   public name = '';
   public color: string = DEFAULT_COLOR;
@@ -56,7 +56,7 @@ export class CarFormComponent implements OnChanges {
   }
 
   public onCancel(): void {
-    this.cancel.emit();
+    this.cancelEdit.emit();
     this.reset();
   }
 

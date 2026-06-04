@@ -11,7 +11,7 @@ const FIRST_PAGE = 1;
 @Injectable({ providedIn: 'root' })
 export class GarageStore {
   private readonly api = inject(GarageApiService);
-private readonly raceStore = inject(RaceStore);
+  private readonly raceStore = inject(RaceStore);
 
   private readonly _cars = signal<Car[]>([]);
   private readonly _total = signal(0);
@@ -19,18 +19,14 @@ private readonly raceStore = inject(RaceStore);
   private readonly _loading = signal(false);
   private readonly winnersApi = inject(WinnersApiService);
 
-
   public readonly cars = this._cars.asReadonly();
   public readonly total = this._total.asReadonly();
   public readonly page = this._page.asReadonly();
   public readonly loading = this._loading.asReadonly();
 
-
   public readonly pageSize = PAGE_SIZE;
   public readonly totalPages = computed(() => Math.max(1, Math.ceil(this._total() / PAGE_SIZE)));
   public readonly isEmpty = computed(() => this._total() === 0);
-
-
 
   public load(): void {
     this._loading.set(true);
@@ -61,21 +57,20 @@ private readonly raceStore = inject(RaceStore);
     this.api.updateCar(id, payload).subscribe(() => this.load());
   }
 
-public deleteCar(id: number): void {
-  this.raceStore.forgetCar(id);
-  this.api.deleteCar(id).subscribe(() => {
-    this.winnersApi.deleteWinner(id).subscribe({ error: () => undefined });
+  public deleteCar(id: number): void {
+    this.raceStore.forgetCar(id);
+    this.api.deleteCar(id).subscribe(() => {
+      this.winnersApi.deleteWinner(id).subscribe({ error: () => undefined });
 
-    const remainingOnPage = this._cars().length - 1;
-    if (remainingOnPage === 0 && this._page() > FIRST_PAGE) {
-      this._page.update((p) => p - 1);
-    }
-    this.load();
-  });
-}
+      const remainingOnPage = this._cars().length - 1;
+      if (remainingOnPage === 0 && this._page() > FIRST_PAGE) {
+        this._page.update((p) => p - 1);
+      }
+      this.load();
+    });
+  }
 
   public createMany(payloads: CreateCarPayload[]): void {
-
     let pending = payloads.length;
     if (pending === 0) {
       return;

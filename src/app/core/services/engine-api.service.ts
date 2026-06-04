@@ -23,9 +23,7 @@ export class EngineApiService {
   }
 
   private patchEngine<T>(id: number, status: EngineStatus): Observable<T> {
-    const params = new HttpParams()
-      .set(QUERY_PARAMS.id, id)
-      .set(QUERY_PARAMS.status, status);
+    const params = new HttpParams().set(QUERY_PARAMS.id, id).set(QUERY_PARAMS.status, status);
     return this.http.patch<T>(this.url, null, { params });
   }
 }

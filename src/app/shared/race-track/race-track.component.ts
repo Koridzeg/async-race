@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  EventEmitter,
-  Input,
-  Output,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { CarComponent } from '../car/car.component';
 
 @Component({
@@ -29,6 +23,6 @@ export class RaceTrackComponent {
 
   @Output() public readonly startEngine = new EventEmitter<number>();
   @Output() public readonly stopEngine = new EventEmitter<number>();
-  @Output() public readonly select = new EventEmitter<number>();
+  @Output() public readonly selectCar = new EventEmitter<number>();
   @Output() public readonly remove = new EventEmitter<number>();
 }

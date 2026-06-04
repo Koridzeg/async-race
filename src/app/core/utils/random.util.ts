@@ -1,13 +1,33 @@
 import { CreateCarPayload } from '../models/car.model';
 
 const CAR_BRANDS = [
-  'Tesla', 'Ford', 'Chevrolet', 'BMW', 'Audi', 'Mercedes',
-  'Toyota', 'Honda', 'Nissan', 'Porsche', 'Lamborghini', 'Ferrari',
+  'Tesla',
+  'Ford',
+  'Chevrolet',
+  'BMW',
+  'Audi',
+  'Mercedes',
+  'Toyota',
+  'Honda',
+  'Nissan',
+  'Porsche',
+  'Lamborghini',
+  'Ferrari',
 ];
 
 const CAR_MODELS = [
-  'Model S', 'Mustang', 'Camaro', 'M3', 'RS6', 'C-Class',
-  'Supra', 'Civic', 'GT-R', '911', 'Huracan', 'F40',
+  'Model S',
+  'Mustang',
+  'Camaro',
+  'M3',
+  'RS6',
+  'C-Class',
+  'Supra',
+  'Civic',
+  'GT-R',
+  '911',
+  'Huracan',
+  'F40',
 ];
 
 const RGB_MAX = 256;

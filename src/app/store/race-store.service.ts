@@ -43,7 +43,6 @@ export class RaceStore {
 
   private readonly driveSubs = new Map<number, Subscription>();
 
-
   public startCar(car: Car): Promise<RaceWinner | null> {
     return new Promise<RaceWinner | null>((resolve) => {
       this.setCarState(car.id, { status: 'starting', duration: 0 });
@@ -72,29 +71,28 @@ export class RaceStore {
     });
   }
 
+  public async startRace(cars: readonly Car[]): Promise<void> {
+    if (this._isRacing()) {
+      return;
+    }
+    this._isRacing.set(true);
+    this._winner.set(null);
 
-public async startRace(cars: readonly Car[]): Promise<void> {
-  if (this._isRacing()) {
-    return;
+    let firstFinisher: RaceWinner | null = null;
+
+    await Promise.all(
+      cars.map(async (car) => {
+        const result = await this.startCar(car);
+        if (result && !firstFinisher) {
+          firstFinisher = result;
+          this._winner.set(result);
+          this.winnersStore.recordWin(result.id, result.time);
+        }
+      }),
+    );
+
+    this._isRacing.set(false);
   }
-  this._isRacing.set(true);
-  this._winner.set(null);
-
-  let firstFinisher: RaceWinner | null = null;
-
-  await Promise.all(
-    cars.map(async (car) => {
-      const result = await this.startCar(car);
-      if (result && !firstFinisher) {
-        firstFinisher = result;
-        this._winner.set(result);
-        this.winnersStore.recordWin(result.id, result.time);
-      }
-    }),
-  );
-
-  this._isRacing.set(false);
-}
 
   public resetRace(carIds: readonly number[]): void {
     this._winner.set(null);
@@ -112,12 +110,7 @@ public async startRace(cars: readonly Car[]): Promise<void> {
     });
   }
 
-
-  private runDrive(
-    car: Car,
-    duration: number,
-    resolve: (w: RaceWinner | null) => void,
-  ): void {
+  private runDrive(car: Car, duration: number, resolve: (w: RaceWinner | null) => void): void {
     const startedAt = performance.now();
 
     const sub = this.engineApi.drive(car.id).subscribe({

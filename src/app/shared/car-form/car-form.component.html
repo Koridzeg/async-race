@@ -18,11 +18,7 @@
     [(ngModel)]="color"
   />
 
-  <button
-    type="submit"
-    class="form__btn form__btn--primary"
-    [disabled]="disabled || !name.trim()"
-  >
+  <button type="submit" class="form__btn form__btn--primary" [disabled]="disabled || !name.trim()">
     {{ mode === 'create' ? 'Create' : 'Save' }}
   </button>
 

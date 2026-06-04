@@ -2,12 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, map } from 'rxjs';
 
-import {
-  API_BASE_URL,
-  API_PATHS,
-  QUERY_PARAMS,
-  TOTAL_COUNT_HEADER,
-} from '../constants';
+import { API_BASE_URL, API_PATHS, QUERY_PARAMS, TOTAL_COUNT_HEADER } from '../constants';
 import { Car, CreateCarPayload, UpdateCarPayload } from '../models/car.model';
 import { Paginated } from '../models/paginated.model';
 
@@ -17,9 +12,7 @@ export class GarageApiService {
   private readonly url = `${API_BASE_URL}${API_PATHS.garage}`;
 
   public getCars(page: number, limit: number): Observable<Paginated<Car>> {
-    const params = new HttpParams()
-      .set(QUERY_PARAMS.page, page)
-      .set(QUERY_PARAMS.limit, limit);
+    const params = new HttpParams().set(QUERY_PARAMS.page, page).set(QUERY_PARAMS.limit, limit);
 
     return this.http
       .get<Car[]>(this.url, { params, observe: 'response' })

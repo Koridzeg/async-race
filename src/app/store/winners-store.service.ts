@@ -32,7 +32,6 @@ export class WinnersStore {
   public readonly pageSize = PAGE_SIZE;
   public readonly totalPages = computed(() => Math.max(1, Math.ceil(this._total() / PAGE_SIZE)));
 
-
   public load(): void {
     this._loading.set(true);
     this.winnersApi
@@ -65,7 +64,6 @@ export class WinnersStore {
     this.load();
   }
 
-
   public recordWin(carId: number, time: number): void {
     this.winnersApi.getWinner(carId).subscribe((existing) => {
       if (existing) {
@@ -80,36 +78,33 @@ export class WinnersStore {
     });
   }
 
-
-private hydrateWithCars(winners: Winner[], total: number): void {
-  if (winners.length === 0) {
-    this._winners.set([]);
-    this._total.set(total);
-    this._loading.set(false);
-    return;
-  }
-
-  const carRequests = winners.map((w) =>
-    this.garageApi.getCar(w.id).pipe(
-      catchError(() => of<Car | null>(null)),
-    ),
-  );
-
-  forkJoin(carRequests).subscribe({
-    next: (cars) => {
-      const views: WinnerView[] = winners.map((w, i) => {
-        const car = cars[i] as Car | null;
-        return {
-          ...w,
-          name: car?.name ?? '(deleted)',
-          color: car?.color ?? '#888888',
-        };
-      });
-      this._winners.set(views);
+  private hydrateWithCars(winners: Winner[], total: number): void {
+    if (winners.length === 0) {
+      this._winners.set([]);
       this._total.set(total);
       this._loading.set(false);
-    },
-    error: () => this._loading.set(false),
-  });
-}
+      return;
+    }
+
+    const carRequests = winners.map((w) =>
+      this.garageApi.getCar(w.id).pipe(catchError(() => of<Car | null>(null))),
+    );
+
+    forkJoin(carRequests).subscribe({
+      next: (cars) => {
+        const views: WinnerView[] = winners.map((w, i) => {
+          const car = cars[i] as Car | null;
+          return {
+            ...w,
+            name: car?.name ?? '(deleted)',
+            color: car?.color ?? '#888888',
+          };
+        });
+        this._winners.set(views);
+        this._total.set(total);
+        this._loading.set(false);
+      },
+      error: () => this._loading.set(false),
+    });
+  }
 }

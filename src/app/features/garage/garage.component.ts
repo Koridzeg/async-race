@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, OnInit, computed, inject, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
 
 import { Car } from '../../core/models/car.model';
 import { randomCars } from '../../core/utils/random.util';
@@ -52,18 +59,18 @@ export class GarageComponent implements OnInit {
     }
   }
 
-public renderStateFor(carId: number): CarRenderState {
-  const state = this.race.carStates().get(carId);
-  if (!state) return IDLE_STATE;
+  public renderStateFor(carId: number): CarRenderState {
+    const state = this.race.carStates().get(carId);
+    if (!state) return IDLE_STATE;
 
-  return {
-    duration: state.duration,
-    isDriving: ANIMATING_STATUSES.includes(state.status),
-    isBroken: state.status === 'broken',
-    canStart: state.status === 'idle' || state.status === 'broken',
-    canStop: state.status !== 'idle' && state.status !== 'starting',
-  };
-}
+    return {
+      duration: state.duration,
+      isDriving: ANIMATING_STATUSES.includes(state.status),
+      isBroken: state.status === 'broken',
+      canStart: state.status === 'idle' || state.status === 'broken',
+      canStop: state.status !== 'idle' && state.status !== 'starting',
+    };
+  }
 
   public onCreate(value: CarFormValue): void {
     this.garage.createCar(value);

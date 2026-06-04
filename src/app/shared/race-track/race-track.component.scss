@@ -118,12 +118,24 @@
 }
 
 @keyframes drive {
-  from { left: 0; }
-  to { left: calc(100% - 80px); }
+  from {
+    left: 0;
+  }
+  to {
+    left: calc(100% - 80px);
+  }
 }
 
 @media (max-width: 600px) {
-  .track__road { height: 40px; }
-  .track__finish { font-size: 20px; right: 4px; }
-  .track__btn { padding: 3px 8px; font-size: 12px; }
+  .track__road {
+    height: 40px;
+  }
+  .track__finish {
+    font-size: 20px;
+    right: 4px;
+  }
+  .track__btn {
+    padding: 3px 8px;
+    font-size: 12px;
+  }
 }

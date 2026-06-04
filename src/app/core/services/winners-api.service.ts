@@ -2,12 +2,7 @@ import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable, catchError, map, of } from 'rxjs';
 
-import {
-  API_BASE_URL,
-  API_PATHS,
-  QUERY_PARAMS,
-  TOTAL_COUNT_HEADER,
-} from '../constants';
+import { API_BASE_URL, API_PATHS, QUERY_PARAMS, TOTAL_COUNT_HEADER } from '../constants';
 import { Paginated } from '../models/paginated.model';
 import { SortOrder, Winner, WinnerSortField } from '../models/winner.model';
 
@@ -42,9 +37,7 @@ export class WinnersApiService {
 
   /** Returns the winner, or null if not found (404). */
   public getWinner(id: number): Observable<Winner | null> {
-    return this.http
-      .get<Winner>(`${this.url}/${id}`)
-      .pipe(catchError(() => of(null)));
+    return this.http.get<Winner>(`${this.url}/${id}`).pipe(catchError(() => of(null)));
   }
 
   public createWinner(winner: Winner): Observable<Winner> {

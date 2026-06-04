@@ -1,7 +1,8 @@
 <section class="winners">
   <header class="winners__header">
     <h2 class="winners__title">
-      Winners <span class="winners__count">({{ store.total() }})</span>
+      Winners
+      <span class="winners__count">({{ store.total() }})</span>
     </h2>
   </header>
 
@@ -16,10 +17,12 @@
             <th>Car</th>
             <th>Name</th>
             <th class="winners__sortable" (click)="toggleSort('wins')">
-              Wins <span class="winners__sort-icon">{{ sortIcon('wins') }}</span>
+              Wins
+              <span class="winners__sort-icon">{{ sortIcon('wins') }}</span>
             </th>
             <th class="winners__sortable" (click)="toggleSort('time')">
-              Best time (s) <span class="winners__sort-icon">{{ sortIcon('time') }}</span>
+              Best time (s)
+              <span class="winners__sort-icon">{{ sortIcon('time') }}</span>
             </th>
           </tr>
         </thead>
