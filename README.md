@@ -2,7 +2,7 @@
 
 A single-page application for managing a collection of cars, racing them on virtual tracks, and tracking winners. Built with Angular 19, signals, and CSS animations.
 
-## 🏆 Score: 350 / 400
+## 🏆 Score: 380 / 400
 
 ## 🔗 Deployment
 
