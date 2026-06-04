@@ -6,7 +6,7 @@ A single-page application for managing a collection of cars, racing them on virt
 
 ## 🔗 Deployment
 
-**Live demo:** [text](https://async-race-lake.vercel.app/garage)
+**Live demo:** [Async Race Live Demo](https://async-race-lake.vercel.app/garage)
 
 
 ## 🛠 Tech Stack
